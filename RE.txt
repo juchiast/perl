@@ -1,0 +1,53 @@
+^ : beginning of string;
+
+$ : end of string;
+
+. : any character except newline;
+
+* : match 0 or more time;
+
++ : match 1 or more time;
+
+? : match 0 or 1 time or shortest match;
+	a? : match 0 or 1 time;
+	a+? : shortest match; VD: <.*?>;
+
+| : or; VD: ^abc|abc$ : abc at the beginning or at the end of string;
+
+(): grouping, "storing"; VD $a=~m/(\d*)/;print $1;
+
+[]: set of characters; VD:
+	[a-z] : match from a to z;
+	[sex] : match s, e and x;
+	[^tq] : match anything except t and q;
+	[\-]  : match "-";
+
+{}: repetition modifier; 
+	a{m} : exactly m "a"; 
+	a{m,} : at least m "a";
+	a{m,n} : at least m "a" and at most n "a";
+
+\ : quote or special;
+	\n : newline character;
+	\t : tab;
+	\r : return;
+	\xhh : character with hex code = hh;
+	\b : "word" boundary;
+	\B : not a "word" boundary;
+	\w : match word character (a-z,A-Z,0-9,_);
+	\W : match non-word character;
+	\d : match digit character (0-9);
+	\D : match non-digit character;
+	\s : match whitespace character (\n," ",\t);
+	\S : match non-whitespace character;
+
+($a=~m//) or $b=($a=~m//) :  return 1 if match ($b=1), 0 if not match;
+
+@b=($a=~m//g) : @b will be array of matched items or grouped items
+
+$a=~s//b/ : replaces first matched item with given string (b), returns 1 if matched, too;
+
+$a=~s///g : replaces all matched items with given string, this also 
+returns number of matched items;
+
+$a=~tr/A/B/ : char to char translating. A and B are two lists of char that have the same length; VD: tr/0-9/9876543210/;
